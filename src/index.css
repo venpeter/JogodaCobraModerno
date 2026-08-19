@@ -1,1 +1,211 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Press Start 2P", "Courier New", monospace;
+  --font-body: "Space Grotesk", "Trebuchet MS", sans-serif;
+
+  --color-pine-950: #04150e;
+  --color-pine-900: #07251a;
+  --color-pine-850: #092e20;
+  --color-pine-800: #0b3424;
+  --color-pine-700: #10452f;
+  --color-pine-600: #1a5c3f;
+
+  --color-mint-100: #eaf7ec;
+  --color-mint-200: #c9eed4;
+  --color-mint-300: #9fe8b6;
+  --color-mint-400: #62d98d;
+  --color-mint-500: #34c46c;
+
+  --color-leaf-600: #17a254;
+  --color-leaf-700: #0e7a3f;
+  --color-leaf-900: #0b5e35;
+
+  --color-apple-400: #ff6b78;
+  --color-apple-500: #ff4d5e;
+  --color-apple-600: #e63946;
+
+  --color-gold-300: #ffe08f;
+  --color-gold-400: #ffd166;
+  --color-gold-500: #eab308;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: #04150e;
+    color: #eaf7ec;
+    font-family: var(--font-body);
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #34c46c;
+    color: #052015;
+  }
+}
+
+@layer components {
+  .kbd {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1;
+    color: #9fe8b6;
+    background: #0b3424;
+    border: 1px solid #1a5c3f;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    padding: 4px 7px 5px;
+    white-space: nowrap;
+  }
+
+  .btn-arcade {
+    font-family: var(--font-display);
+    background: #34c46c;
+    color: #052015;
+    border-radius: 8px;
+    box-shadow:
+      0 5px 0 #0e7a3f,
+      0 14px 30px rgba(52, 196, 108, 0.28);
+    transition:
+      transform 0.12s ease,
+      box-shadow 0.12s ease,
+      filter 0.12s ease;
+  }
+  .btn-arcade:hover {
+    filter: brightness(1.08);
+  }
+  .btn-arcade:active {
+    transform: translateY(4px);
+    box-shadow:
+      0 1px 0 #0e7a3f,
+      0 6px 16px rgba(52, 196, 108, 0.2);
+  }
+
+  .btn-ghost {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: #c9eed4;
+    background: rgba(11, 52, 36, 0.6);
+    border: 1px solid rgba(26, 92, 63, 0.8);
+    border-radius: 8px;
+    transition:
+      background 0.15s ease,
+      transform 0.12s ease,
+      border-color 0.15s ease;
+  }
+  .btn-ghost:hover {
+    background: #10452f;
+    border-color: #34c46c;
+  }
+  .btn-ghost:active {
+    transform: scale(0.96);
+  }
+
+  .anim-rise {
+    animation: rise 0.45s cubic-bezier(0.18, 0.9, 0.32, 1.18) both;
+  }
+  .anim-pop {
+    animation: pop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  }
+  .anim-shimmer {
+    background-image: linear-gradient(
+      100deg,
+      rgba(255, 224, 143, 0) 30%,
+      rgba(255, 255, 255, 0.45) 50%,
+      rgba(255, 224, 143, 0) 70%
+    );
+    background-size: 220% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+  .anim-drift1 {
+    animation: drift1 16s ease-in-out infinite;
+  }
+  .anim-drift2 {
+    animation: drift2 20s ease-in-out infinite;
+  }
+  .speck {
+    animation: floaty 7s ease-in-out infinite;
+  }
+  .blink-prompt {
+    animation: blinkc 1.6s steps(1) infinite;
+  }
+
+  .board-frame {
+    width: min(94vw, 620px, max(280px, calc(100vh - 335px)));
+    width: min(94vw, 620px, max(280px, calc(100dvh - 335px)));
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -20% 0;
+  }
+}
+@keyframes drift1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(70px, 50px);
+  }
+}
+@keyframes drift2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-60px, -40px);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-16px);
+    opacity: 0.85;
+  }
+}
+@keyframes blinkc {
+  0%,
+  80%,
+  100% {
+    opacity: 1;
+  }
+  85%,
+  95% {
+    opacity: 0.15;
+  }
+}
